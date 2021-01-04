@@ -1,0 +1,33 @@
+<h1>Editor recenze</h1>
+
+<form method="post" enctype="multipart/form-data">
+    <input type="hidden" name="review_id" value="<?= $review['review_id'] ?>" />
+
+    <input type="hidden" name="article_id" value="<?= $review['article_id'] ?>" />
+
+    <input type="hidden" name="user_id" value="<?= $review['user_id'] ?>" />
+
+
+    <div class="form-group">
+        <label for="criterium_1">Relevantnost (1 - 10):</label>
+        <input type="number" class="form-control" placeholder="Vložte hodnocení od 1 do 10" name="criterium_1" value="<?= $review['criterium_1'] ?>">
+    </div>
+    <div class="form-group">
+        <label for="criterium_2">Kvalita článku (1 - 10):</label>
+        <input type="number" class="form-control" placeholder="Vložte hodnocení od 1 do 10" name="criterium_2" value="<?= $review['criterium_2'] ?>">
+    </div>
+    <div class="form-group">
+        <label for="criterium_3">Nezaujatost (1 - 10):</label>
+        <input type="number" class="form-control" placeholder="Vložte hodnocení od 1 do 10" name="criterium_3" value="<?= $review['criterium_3'] ?>">
+    </div>
+    <div class="form-group">
+        <label for="note">Poznámka:</label>
+        <input type="text" class="form-control" placeholder="Vložte poznámku" name="note" value="<?= $review['note'] ?>">
+    </div>
+
+    <button type="submit" value="Uložit recenzi" class="btn btn-primary">Uložit recenzi</button>
+
+</form>
+
+
+<br>

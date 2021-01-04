@@ -1,0 +1,29 @@
+<h1>Seznam uživatelů</h1>
+<table>
+    <?php foreach ($users as $user) : ?>
+        <tr>
+            <td>
+                <h4><?= $user['jmeno']?></h4>
+                <?php if ($user['role'] == 0) : ?>
+                    <h5>Role: Autor</h5>
+                <?php endif ?>
+                <?php if ($user['role'] == 1) : ?>
+                    <h5>Role: Recenzent</h5>
+                <?php endif ?>
+                <?php if ($user['role'] == 2) : ?>
+                    <h5>Role: Admin</h5>
+                <?php endif ?>
+
+                <!-- admin -->
+                <?php if ($role == 2) : ?>
+                    <a href="listofusers/<?= $user['user_id'] ?>/odstranit">Odstranit uživatele</a><br />
+                    Nastavit roli na:
+                    <a href="listofusers/<?= $user['user_id'] ?>/role/0">Autor</a>
+                    <a href="listofusers/<?= $user['user_id'] ?>/role/1">Recenzent</a>
+                    <a href="listofusers/<?= $user['user_id'] ?>/role/2">Admin</a><br />
+                <?php endif ?>
+                <br />
+            </td>
+        </tr>
+    <?php endforeach ?>
+</table>

@@ -1,0 +1,22 @@
+<h2>Vítej v administraci, <?= $jmeno ?>!</h2>
+<p>Tvoje user ID: <?= $user_id ?></p>
+
+<?php if ($role == 0) : ?>
+    <p>Jsi přihlášen(a) jako autor. Můžeš vkládat články. </p><br />
+<?php endif ?>
+
+<?php if ($role == 1) : ?>
+    <p>Jsi přihlášen(a) jako recenzent. Můžeš vkládat a hodnotit články.</p><br />
+<?php endif ?>
+
+<?php if ($role == 2) : ?>
+    <p>Jsi přihlášen(a) jako admin. Můžeš vkládat a schvalovat články. Můžeš spravovat uživatele stránky. </p><br />
+    <h4><a href="listofusers">Správa uživatelů</a></h4>
+<?php endif ?>
+
+<h4><a href="editor">Vložit článek</a></h4>
+<h4><a href="myarticles">Moje články</a></h4>
+<h4><a href="administrace/odhlasit">Odhlásit</a></h4>
+
+<br />
+<br />

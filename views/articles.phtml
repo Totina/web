@@ -1,0 +1,46 @@
+<h1>Seznam článků</h1>
+<table>
+    <?php foreach ($clanky as $clanek) : ?>
+        <tr>
+            <td>
+                <!-- uzivatel je recenzent nebo admin NEBO clanek je schvalen NEBO uzivatel je majitelem clanku -->
+                <?php if((isset($role) && $role != 0) || $clanek['stav'] == 1 || (isset($role) && $user_id == $clanek['user_id'])): ?>
+                    <h4><a href="clanek/<?= $clanek['url'] ?>"><?= $clanek['titulek'] ?></a></h4>
+                    <?= $clanek['popisek'] ?>
+                <?php endif; ?>
+
+                <!-- admin -->
+                <?php if (isset($role) && $role == 2) : ?>
+                    <br />
+                    <a href="clanek/<?= $clanek['url'] ?>/odstranit">Odstranit</a>
+
+                    <?php if ($clanek['stav'] == 0) : ?>
+                        <br />
+                        <a href="clanek/<?= $clanek['url'] ?>/schvalit">Schválit</a>
+                        <a href="clanek/<?= $clanek['url'] ?>/odmitnout">Odmítnout</a>
+                    <?php endif ?>
+                <?php endif ?>
+
+                <!-- uzivatel je vlastnikem clanku -->
+                <?php if (isset($role) && $user_id == $clanek['user_id'] && $role != 2) : ?>
+                    <br />
+                    (Stav článku:
+                    <?php if ($clanek['stav'] == 0) : ?>
+                        v recenzním řízení)
+                    <?php elseif ($clanek['stav'] == 1): ?>
+                        schválen)
+                    <?php else: ?>
+                        odmítnut)
+                    <?php endif ?>
+
+                    <br />
+                    <a href="clanek/<?= $clanek['url'] ?>/odstranit">Odstranit</a>
+                <?php endif ?>
+
+            </td>
+        </tr>
+    <?php endforeach ?>
+</table>
+
+<br />
+<br />

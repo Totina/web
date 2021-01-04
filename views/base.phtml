@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="cs-cz">
+<head>
+    <base href="/localhost" />
+    <meta charset="UTF-8" />
+    <title><?php echo $titulek; ?></title>
+    <meta name="description" content="<?php echo $popis; ?>" />
+    <meta name="keywords" content="<?php echo $klicova_slova; ?>" />
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- dodatečný styl -->
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style1.css">
+
+    <script src="https://kit.fontawesome.com/yourcode.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+<header>
+
+</header>
+
+<?php foreach ($zpravy as $zprava) : ?>
+    <p class="zprava"><?= $zprava ?></p>
+<?php endforeach ?>
+
+<!-- navigace - menu -->
+<nav class="navbar navbar-default navbar-fixed-top" id="colorful-nav">
+    <div class="navbar_container">
+
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="redakcnisystem"><a href="home"><span class="glyphicon glyphicon-list-alt"></span><h5>Redakční systém</h5></a></li>
+                <li class="animated home"><a href="home"><span class="glyphicon glyphicon-home"></span><h5>Home</h5></a></li>
+                <li class="animated profile"><a href="clanek"><span class="glyphicon glyphicon-pencil"></span><h5>Články</h5></a></li>
+                <li class="animated statistics"><a href="administrace"><span class="glyphicon glyphicon-user"></span><h5>Můj účet</h5></a></li>
+                <li class="animated about"><a href="aboutus"><span class="glyphicon glyphicon-info-sign"></span><h5>O nás</h5></a></li>
+                <li class="animated contact"><a href="kontakt"><span class="glyphicon glyphicon-earphone"></span><h5>Kontakt</h5></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Obsah stranky -->
+<article>
+    <div class="container">
+    <?php $this->controller->drawView(); ?>
+    </div>
+</article>
+
+<footer id="myFooter">
+    <div class="footer-copyright fixed-bottom">
+        <p>© 2020 Tereza Tothová </p>
+    </div>
+</footer>
+</body>
+</html>
