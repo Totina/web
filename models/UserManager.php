@@ -62,6 +62,16 @@ class UserManager {
         ');
     }
 
+    // Vrátí seznam recenzentů v databázi
+    public function getReviewers(){
+        return DtbManager::dotazVsechnyRadky('
+            SELECT `user_id`, `jmeno`, `role`
+            FROM `users`
+            WHERE role = 1
+            ORDER BY `user_id` ASC 
+        ');
+    }
+
     // Smaže uživatele z databáze
    public function removeUser($user_id){
         DtbManager::dotaz('

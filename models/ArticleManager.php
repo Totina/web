@@ -39,9 +39,14 @@ class ArticleManager {
         ', array($user_id));
     }
 
-    // Uloží článek do databáze
-    public function ulozClanek($clanek){
+    // Uloží článek do databáze, pokud článek už existuje, přesměruje na edit
+    public function ulozClanek($id, $clanek){
+        if(!$id) {
             DtbManager::insert('clanky', $clanek);
+        }
+        else {
+            $this->edit($id, $clanek);
+        }
     }
 
     // Schválí článek
@@ -68,6 +73,20 @@ class ArticleManager {
         DELETE FROM clanky
         WHERE url = ?
     ', array($url));
+    }
+
+    // Edituje clanek
+    public function edit($id, $clanek){
+        DtbManager::dotaz('
+        UPDATE clanky
+        SET titulek = ?,
+            obsah = ?,
+            url = ?,
+            popisek = ?,
+            klicova_slova = ?,
+            file = ?
+        WHERE clanky_id = ?
+    ', array($clanek['titulek'], $clanek['obsah'], $clanek['url'], $clanek['popisek'], $clanek['klicova_slova'],$clanek['file'], $id));
     }
 
 }
