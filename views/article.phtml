@@ -23,7 +23,13 @@
                     Relevantnost: <?= $review['criterium_1'] ?>
                     Kvalita článku: <?= $review['criterium_2'] ?>
                     Nezaujatost: <?= $review['criterium_3'] ?>
-                    Poznámka: <?= $review['note'] ?><br />
+                    Poznámka: <?= $review['note'] ?>
+
+                    <?php if (isset($role) && $review['user_id'] == $user_id) : ?>
+                        <a href="review/<?= $review['article_id'] ?>/<?= $review['review_id'] ?>">Editovat</a>
+                    <?php endif ?>
+                    <br />
+
                 </td>
             </tr>
         <?php endforeach ?>

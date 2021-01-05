@@ -37,6 +37,11 @@
                     <a href="clanek/<?= $clanek['url'] ?>/odstranit">Odstranit</a>
                 <?php endif ?>
 
+                <!-- uzivatel je vlastnikem clanku a clanek jeste nebyl schvalen -->
+                <?php if(isset($role) && $user_id == $clanek['user_id'] && $clanek['stav'] == 0): ?>
+                    <a href="editor/<?= $clanek['url'] ?>">Editovat</a>
+                <?php endif; ?>
+
             </td>
         </tr>
     <?php endforeach ?>
