@@ -65,10 +65,16 @@ class ClanekController extends Controller{
             }
 
             // Ziskání autora
-            //$this->data['user_id'] = $clanek['user_id'];
             $author = $am->getAuthor($clanek['user_id']);
-            $authorName = $author['jmeno'];
-            $this->data['author'] = $authorName;
+
+            if($author) {
+                $authorName = $author['jmeno'];
+                $this->data['author'] = $authorName;
+            }
+            else {
+                // autor clanku jiz neexistuje
+                $this->data['author'] = "neznámý";
+            }
 
             // Hlavička stránky
             $this->header = array(

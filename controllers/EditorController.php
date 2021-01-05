@@ -34,6 +34,26 @@ class EditorController extends Controller {
             'file' => '',
         );
 
+        // Článek chceme editovat
+        if (!empty($params[0])) {
+            // Načtení článku k editaci
+            $editovanyClanek = $am->vratClanek($params[0]);
+
+            // Článek uživateli patří
+            if($user['user_id'] == $editovanyClanek['user_id']) {
+                if ($editovanyClanek) {
+                    $clanek = $editovanyClanek;
+                }
+                else {
+                    $this->addMessage('Článek nebyl nalezen');
+                }
+            }
+            else {
+                $this->addMessage('Nedostatečná oprávnění.');
+                $this->route('prihlaseni');
+            }
+        }
+
         // Odeslán formulář
         if ($_POST) {
 
@@ -45,7 +65,7 @@ class EditorController extends Controller {
 
             // Kontrola zda již neexistuje soubor se stejným jménem, pokud ano, změníme jméno
             if (file_exists($target_dir.'/'.$pname)) {
-                $pname = $pname.rand(1000,10000);
+                $pname = rand(1000,10000).$pname;
             }
 
             // Soubor je formátu PDF
@@ -64,7 +84,7 @@ class EditorController extends Controller {
                 $clanek['file'] = $pname;
 
                 // Uložení článku do DB
-                $am->ulozClanek($clanek);
+                $am->ulozClanek($_POST['clanky_id'], $clanek);
 
                 $this->addMessage('Článek byl úspěšně uložen.');
                 $this->route('clanek/' . $clanek['url']);

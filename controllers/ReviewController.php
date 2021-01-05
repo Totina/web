@@ -34,6 +34,26 @@ class ReviewController extends Controller {
             $review['article_id'] = $params[0];
         }
 
+        // Recenzi chceme editovat
+        if (!empty($params[1])) {
+            // Načtení článku k editaci
+            $editovanaRecenze = $rm->vratRecenzi($params[1]);
+
+            // Recenze uživateli patří
+            if($user['user_id'] == $editovanaRecenze['user_id']) {
+                if ($editovanaRecenze) {
+                    $review = $editovanaRecenze;
+                }
+                else {
+                    $this->addMessage('Recenze nebyla nalezen');
+                }
+            }
+            else {
+                $this->addMessage('Nedostatečná oprávnění.');
+                $this->route('prihlaseni');
+            }
+        }
+
         // Odeslán formulář
         if ($_POST) {
 
@@ -42,11 +62,10 @@ class ReviewController extends Controller {
             $review = array_intersect_key($_POST, array_flip($klice));      // vymění klíče za hodnoty
 
             // Uložení recenze do DB
-            $rm->ulozRecenzi($review);
+            $rm->ulozRecenzi($_POST['review_id'], $review);
 
             $this->addMessage('Recenze byla úspěšně uložena.');
-            $this->route('administrace');
-
+            $this->route('clanek');
         }
 
         $this->data['review'] = $review;
