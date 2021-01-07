@@ -22,7 +22,7 @@ class RegisterController extends Controller{
                 $this->route('administrace');
             }
             catch (ErrorManager $chyba) {
-                $this->addMessage($chyba->getMessage());
+                $this->addMessage('Při registraci došlo k chybě.');
             }
         }
 

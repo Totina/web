@@ -36,12 +36,11 @@ abstract class Controller {
 
     // Zabezpečení proti XSS útokum
     // Zavolá funkci htmlspecialchars() na všechny předávané stringy
-    private function makeSafe($element){        //  = null
+    private function makeSafe($element){
         if (!isset($element)) {                                 // promenna neni inicializovana
             return null;
         }
         elseif (is_string($element)) {                          //element je string
-            //return htmlspecialchars($x, ENT_QUOTES);
             return htmlspecialchars($element);
         }
         elseif (is_array($element)) {                           // element je pole

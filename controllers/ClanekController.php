@@ -3,7 +3,7 @@
 class ClanekController extends Controller{
 
     public function execute($params){
-        // Vytvoření instance modelů pro práci s články a uživately
+        // Vytvoření instance modelů pro práci s články, uživateli a recenzemi
         $am = new ArticleManager();
         $um = new UserManager();
         $rm = new ReviewManager();
@@ -13,15 +13,14 @@ class ClanekController extends Controller{
 
         // Získání uživatele
         $user = $um->getUser();
-        $this->data['admin'] = $user && $user['admin'];
 
-        // Uživatel existuje
-        if($user) {
+        if ($user) {
+            $this->data['admin'] = $user['admin'];
             $this->data['role'] = $user['role'];
             $this->data['user_id'] = $user['user_id'];
         }
 
-        // Je zadáno URL článku ke smazání
+        // Odstranění článku
         if (!empty($params[1]) && $params[1] == 'odstranit') {
             $clanek = $am->vratClanek($params[0]);
 
@@ -53,7 +52,7 @@ class ClanekController extends Controller{
             $this->addMessage('Článek byl odmítnut.');
             $this->route('clanek');
         }
-        // Zadáno URL článku k zobrazení
+        // Zobrazení článku
         else if (!empty($params[0])) {
             // Získání článku podle URL
             $clanek = $am->vratClanek($params[0]);

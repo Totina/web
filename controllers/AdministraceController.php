@@ -3,13 +3,13 @@
 class AdministraceController extends Controller{
 
     public function execute($params){
-        // Do administrace mají přístup jen přihlášení uživatelé
+        // Kontrola, že je uživatel přihlášen
         $this->userIsLoggedIn();
 
-        // Hlavička stránky
+        // Hlavička
         $this->header['titulek'] = 'Přihlášení';
 
-        // Získání dat o přihlášeném uživateli
+        // Založení modelu pro práci s uživatelem
         $um = new UserManager();
 
         // Odhlášení uživatele

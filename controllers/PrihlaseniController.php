@@ -3,6 +3,9 @@
 class PrihlaseniController extends Controller{
 
     public function execute($params){
+        // Hlavička
+        $this->header['titulek'] = 'Přihlášení';
+
         // Vytvoření instance modelu pro práci s uživateli
         $um = new UserManager();
 
@@ -10,9 +13,6 @@ class PrihlaseniController extends Controller{
         if ($um->getUser()) {
             $this->route('administrace');
         }
-
-        // Hlavička
-        $this->header['titulek'] = 'Přihlášení';
 
         // Odeslán formulář
         if ($_POST) {
