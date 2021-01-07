@@ -2,8 +2,9 @@
 
 class UserManager {
 
-    // Registruje nového uživatele
+    // Registrace nového uživatele
     public function register($jmeno, $heslo, $hesloZnovu){
+        // Hesla se neshodují
         if ($heslo != $hesloZnovu) {
             throw new ErrorManager('Zadaná hesla se neshodují.');
         }
@@ -40,7 +41,15 @@ class UserManager {
         $_SESSION['uzivatel'] = $uzivatel;
     }
 
-    // Odhlásí uživatele
+    // Smazání uživatele z databáze
+    public function removeUser($user_id){
+        DtbManager::dotaz('
+        DELETE FROM users
+        WHERE user_id = ?
+    ', array($user_id));
+    }
+
+    // Odhlášení uživatele
     public function logout(){
         unset($_SESSION['uzivatel']);
     }
@@ -70,14 +79,6 @@ class UserManager {
             WHERE role = 1
             ORDER BY `user_id` ASC 
         ');
-    }
-
-    // Smaže uživatele z databáze
-   public function removeUser($user_id){
-        DtbManager::dotaz('
-        DELETE FROM users
-        WHERE user_id = ?
-    ', array($user_id));
     }
 
     // Změní roli uživatele

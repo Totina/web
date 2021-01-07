@@ -4,16 +4,15 @@ class DtbManager{
 
     private static $connection;
 
-    // Nastavení databáze
-    private static $settings = array(
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
-    );
-
     // Připojení k databázi
     public static function connect($host, $user, $password, $dtb_name){
-        if (!isset(self::$connection)) {
-            self::$connection = new PDO("mysql:host=$host;dbname=$dtb_name", $user, $password, self::$settings);
+        try {
+            self::$connection = new PDO("mysql:host=$host;dbname=$dtb_name", $user, $password);
+
+            self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            self::$connection->setAttribute(PDO::MYSQL_ATTR_INIT_COMMAND, "SET NAMES utf8");
+        } catch(PDOException $e){
+            echo "Connection failed: " . $e->getMessage();
         }
     }
 
@@ -57,6 +56,5 @@ class DtbManager{
     public static function getLastId(){
         return self::$connection->lastInsertId();
     }
-
 
 }
