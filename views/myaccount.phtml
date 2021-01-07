@@ -1,4 +1,4 @@
-<h2>Vítej v administraci, <?= $jmeno ?>!</h2>
+<h1>Vítej v administraci svého účtu, <?= $jmeno ?>!</h1>
 <p>Tvoje user ID: <?= $user_id ?></p>
 
 <?php if ($role == 0) : ?>
@@ -11,7 +11,7 @@
 <?php endif ?>
 
 <?php if ($role == 2) : ?>
-    <p>Jsi přihlášen(a) jako admin. Můžeš vkládat a schvalovat články. Můžeš spravovat uživatele stránky. </p><br />
+    <p>Jsi přihlášen(a) jako admin. Můžeš vkládat a schvalovat články. Můžeš spravovat uživatele stránky a přidělovat články k recenzi. </p><br />
     <h4><a href="listofusers">Správa uživatelů</a></h4>
     <h4><a href="assignments">Přidělování článků k recenzi</a></h4>
 <?php endif ?>

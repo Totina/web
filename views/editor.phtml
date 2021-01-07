@@ -5,24 +5,24 @@
 
     <div class="form-group">
         <label for="jmeno">Titulek:</label>
-        <input type="text" class="form-control" placeholder="Vložte titulek" name="titulek" value="<?= $clanek['titulek'] ?>">
+        <input type="text" class="form-control" placeholder="Vložte titulek" name="titulek" required value="<?= $clanek['titulek'] ?>">
     </div>
     <div class="form-group">
         <label for="url">URL:</label>
-        <input type="text" class="form-control" placeholder="Vložte URL článku" name="url" value="<?= $clanek['url'] ?>">
+        <input type="text" class="form-control" placeholder="Vložte URL článku" name="url" required value="<?= $clanek['url'] ?>">
     </div>
     <div class="form-group">
         <label for="popisek">Popis:</label>
-        <input type="text" class="form-control" placeholder="Vložte popis článku" name="popisek" value="<?= $clanek['popisek'] ?>">
+        <input type="text" class="form-control" placeholder="Vložte popis článku" name="popisek" required value="<?= $clanek['popisek'] ?>">
     </div>
     <div class="form-group">
         <label for="klicova_slova">Klíčová slova:</label>
-        <input type="text" class="form-control" placeholder="Vložte klíčová slova" name="klicova_slova" value="<?= $clanek['klicova_slova'] ?>">
+        <input type="text" class="form-control" placeholder="Vložte klíčová slova" name="klicova_slova" required value="<?= $clanek['klicova_slova'] ?>">
     </div>
 
     <div class="form-group">
         <label for="obsah">Obsah:</label>
-        <textarea class="form-control" rows="5" name="obsah"><?= $clanek['obsah'] ?></textarea>
+        <textarea class="form-control" rows="5" name="obsah" required><?= $clanek['obsah'] ?></textarea>
     </div>
 
 
@@ -30,7 +30,7 @@
 
     <div class="form-group">
         <label for="fileToUpload">Vyber PDF soubor k nahrání:</label>
-    <input type="file" class="form-control-file border" name="fileToUpload" value="<?= $clanek['file'] ?>" /><br />
+    <input type="file" class="form-control-file border" name="fileToUpload" required value="<?= $clanek['file'] ?>" /><br />
     </div>
 
     <button type="submit" value="Uložit článek" class="btn btn-primary">Uložit článek</button>
